@@ -1,0 +1,8 @@
+[project]
+name = "Infotecs_weather"
+version = "1"
+description = "Service for weather tracking"
+
+[project.urls]
+"Homepage" = "https://github.com/KirTrub/Infotecs_weather"
+"Repository" = "https://github.com/KirTrub/Infotecs_weather.git"
