@@ -4,3 +4,4 @@ db/weather.db
 *.pyc
 *.pyo
 *.pyd
+uv.lock
