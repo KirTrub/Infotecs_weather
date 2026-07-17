@@ -56,7 +56,7 @@ class WeatherService(IWeatherService):
         response = await self.http_client.get("/forecast", params={
             "latitude": lat,
             "longitude": lon,
-            "timezone": "Europe/Moscow",
+            "timezone": "auto",
             "current": "temperature_2m,wind_speed_10m,surface_pressure"
         })
         data = response.json().get("current", {})
@@ -116,7 +116,7 @@ class WeatherService(IWeatherService):
         response = await self.http_client.get("/forecast", params={
             "latitude": lat,
             "longitude": lon,
-            "timezone": "Europe/Moscow",
+            "timezone": "auto",
             "hourly": "temperature_2m,relative_humidity_2m,wind_speed_10m,precipitation",
             "forecast_days": 1
         })

@@ -2,8 +2,8 @@ from fastapi import APIRouter, Depends, Query
 from typing import List, Optional
 
 from app.dto.schemas import (
-    UserCreate, UserResponse, 
-    CityCreate, CityResponse, 
+    UserCreateRequest, UserCreateResponse,
+    CityCreateRequest, CityCreateResponse,
     CurrentWeatherResponse
 )
 from app.services.weather_service import IWeatherService
@@ -11,22 +11,22 @@ from app.api.deps import get_weather_service
 
 routes = APIRouter()
 
-@routes.post("/users", response_model=UserResponse, status_code=201)
+@routes.post("/users", response_model=UserCreateResponse, status_code=201)
 async def register_user(
-    req: UserCreate,
+    req: UserCreateRequest,
     service: IWeatherService = Depends(get_weather_service)
 ):
     user_id = await service.register_user(req.user_name)
-    return UserResponse(user_id=user_id)
+    return UserCreateResponse(user_id=user_id)
 
-@routes.post("/users/{user_id}/cities", response_model=CityResponse)
+@routes.post("/users/{user_id}/cities", response_model=CityCreateResponse)
 async def add_city(
     user_id: int,
-    req: CityCreate,
+    req: CityCreateRequest,
     service: IWeatherService = Depends(get_weather_service)
 ):
     city_id = await service.add_city_to_user(user_id, req.city_name, req.latitude, req.longitude)
-    return CityResponse(city_id=city_id)
+    return CityCreateResponse(city_id=city_id)
 
 @routes.get("/users/{user_id}/cities", response_model=List[str])
 async def get_cities(
@@ -47,7 +47,7 @@ async def get_forecast(
 
 @routes.get("/forecast", response_model=CurrentWeatherResponse)
 async def get_current_weather(
-    lat: float, 
+    lat: float,
     lon: float,
     service: IWeatherService = Depends(get_weather_service)
 ):

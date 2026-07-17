@@ -1,18 +1,18 @@
-from pydantic import BaseModel
-from typing import List, Optional
+from pydantic import BaseModel, Field
+from typing import Optional
 
-class UserCreate(BaseModel):
-    user_name: str
+class UserCreateRequest(BaseModel):
+    user_name: str = Field(min_length=5, max_length=100)
 
-class UserResponse(BaseModel):
+class UserCreateResponse(BaseModel):
     user_id: int
 
-class CityCreate(BaseModel):
-    city_name: str
-    latitude: float
-    longitude: float
+class CityCreateRequest(BaseModel):
+    city_name: str = Field(min_length=2, max_length=100)
+    latitude: float = Field(ge=-90, le=90)
+    longitude: float = Field(ge=-180, le = 180)
 
-class CityResponse(BaseModel):
+class CityCreateResponse(BaseModel):
     city_id: int
     status: str = "OK"
 
