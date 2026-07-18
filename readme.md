@@ -99,8 +99,25 @@ pytest
 
 Реализована возможность запустить проект с помощью docker-compose без необходимости ручной настройки окружения.
 
-*Проект запустится только в том случае, если все тесты проходят проверку.*
+Проект запустится только в том случае, если все тесты проходят проверку.
 
+*Для локального запуска*
 ```bash
-docker-compose up --build
+docker-compose -f docker-compose.local.yml up --build
+```
+
+*Для запуска на сервере*
+```bash
+docker-compose -f docker-compose.vps.yml up --build
+```
+
+Также в docker запускается nginx, а сам проект развернут на kirtrub.ru.
+
+Пример запроса:
+```
+curl https://kirtrub.ru/forecast?lon=70&lat=64
+```
+Ответ:
+```
+{"temperature":24.5,"wind_speed":7.7,"pressure":996.6}⏎
 ```
