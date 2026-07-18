@@ -19,7 +19,7 @@ jobs:
           port: ${{ secrets.PORT }}
 
           script: |
-            cd /home/root/Infotecs_weather
+            cd /root/Infotecs_weather
 
             git pull origin main
 
