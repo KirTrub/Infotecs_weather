@@ -1,0 +1,15 @@
+services:
+  weather-api:
+    build: .
+    container_name: infotecs_weather
+    environment:
+      - APP_HOST=0.0.0.0
+      - APP_PORT=8000
+    ports:
+      - "8000:8000"
+    volumes:
+      - weather-db:/app/db
+    restart: unless-stopped
+
+volumes:
+  weather-db:
