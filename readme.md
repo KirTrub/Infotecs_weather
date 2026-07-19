@@ -97,7 +97,7 @@ pytest
 
 # Усложнения
 
-Реализована возможность запустить проект с помощью docker-compose без необходимости ручной настройки окружения.
+1. Реализована возможность запустить проект с помощью docker-compose без необходимости ручной настройки окружения.
 
 Проект запустится только в том случае, если все тесты проходят проверку.
 
@@ -111,7 +111,7 @@ docker-compose -f docker-compose.local.yml up --build
 docker-compose -f docker-compose.vps.yml up --build
 ```
 
-Также в docker запускается nginx, а сам проект развернут на kirtrub.ru.
+2. Проект развернут на моем VPS сервере с помощью nginx. API доступно по адресу kirtrub.ru
 
 Пример запроса:
 ```
@@ -119,5 +119,13 @@ curl https://kirtrub.ru/forecast?lon=70&lat=64
 ```
 Ответ:
 ```
-{"temperature":24.5,"wind_speed":7.7,"pressure":996.6}⏎
+{
+    "temperature":24.5,
+    "wind_speed":7.7,
+    "pressure":996.6
+}
 ```
+
+Также по адресу kirtrub.ru/docs можно открыть документацию swagger
+
+3. Реализован базовый CI/CD пайплайн: когда в ветку main приходит push, Github Actions локально пересобирает и запускает проект на сервере.
