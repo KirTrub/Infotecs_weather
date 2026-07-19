@@ -24,6 +24,9 @@ class UserCity(Base):
 
 class WeatherForecast(Base):
     __tablename__ = "weather_forecasts"
+    __table_args__ = (
+        Index("ix_forecast_city_time", "city_id", "time", unique=True),
+    )
     id: Mapped[int] = mapped_column(primary_key=True)
     city_id: Mapped[int] = mapped_column(ForeignKey("cities.id"))
     time: Mapped[time] = mapped_column(Time) 
