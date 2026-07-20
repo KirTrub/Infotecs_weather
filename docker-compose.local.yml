@@ -1,4 +1,8 @@
 services:
+  tests:
+    build: .
+    entrypoint: ["pytest", "--cov=app", "--cov-report=term-missing"]
+
   weather-api:
     build: .
     container_name: infotecs_weather
@@ -9,6 +13,10 @@ services:
       - "8000:8000"
     volumes:
       - weather-db:/app/db
+    depends_on:
+      tests:
+        condition: service_completed_successfully
     restart: unless-stopped
+
 volumes:
   weather-db:
