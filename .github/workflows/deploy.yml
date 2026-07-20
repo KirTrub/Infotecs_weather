@@ -24,7 +24,7 @@ jobs:
 
             docker compose -f docker-compose.vps.yml build
 
-            docker compose -f docker-compose.vps.yml run --rm weather-api pytest --cov=app --cov-report=term-missing
+            docker compose -f docker-compose.vps.yml run --rm -T tests
 
             docker compose -f docker-compose.vps.yml down
             docker compose -f docker-compose.vps.yml up -d
